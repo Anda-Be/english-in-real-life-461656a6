@@ -81,6 +81,14 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { property: "og:type", content: "website" },
       { property: "og:site_name", content: "English in Real Life" },
       { name: "twitter:card", content: "summary" },
+      { title: "Lovable App" },
+      { property: "og:title", content: "Lovable App" },
+      { name: "twitter:title", content: "Lovable App" },
+      { name: "description", content: "Learn French verb tenses with this interactive web app." },
+      { property: "og:description", content: "Learn French verb tenses with this interactive web app." },
+      { name: "twitter:description", content: "Learn French verb tenses with this interactive web app." },
+      { property: "og:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/8cfaea6a-c1fe-4309-aad6-1f0f70128df1/id-preview-5ff6dec1--20f29f00-f753-499c-8888-6e0a7fe04d03.lovable.app-1781698348693.png" },
+      { name: "twitter:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/8cfaea6a-c1fe-4309-aad6-1f0f70128df1/id-preview-5ff6dec1--20f29f00-f753-499c-8888-6e0a7fe04d03.lovable.app-1781698348693.png" },
     ],
     links: [
       {
