@@ -3,6 +3,7 @@ import { useState } from "react";
 import { LESSONS_BY_SLUG, type Exercise } from "@/lib/lessons";
 import { SiteFooter, SiteHeader } from "@/components/SiteHeader";
 import { MatchGame } from "@/components/MatchGame";
+import { useProgress } from "@/hooks/use-progress";
 
 
 
