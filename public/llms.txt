@@ -1,0 +1,13 @@
+# English in Real Life
+
+> Învață engleza așa cum o folosești cu adevărat: la restaurant, la aeroport, la interviu, cu prietenii sau online. Dialoguri realiste, explicații în română, exerciții interactive și mini-jocuri pentru nivel C1.
+
+## Pages
+
+- [Acasă](/): Toate situațiile disponibile.
+- [La restaurant](/lesson/restaurant): Comandă, trimite ceva înapoi politicos, vorbește despre mâncare.
+- [La aeroport](/lesson/airport): Check-in, securitate, întârzieri, conexiuni.
+- [La interviu](/lesson/interview): Răspunsuri C1, hedging, întrebări inteligente pentru recrutor.
+- [Cu prietenii](/lesson/friends): Conversație informală, idiomuri, small talk.
+- [Online: email & chat](/lesson/online): Registru profesional în email și mesagerie.
+- [Social media](/lesson/social): Captions, comentarii, ton autentic.
