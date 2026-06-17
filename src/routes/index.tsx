@@ -1,6 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { LESSONS } from "@/lib/lessons";
 import { SiteFooter, SiteHeader } from "@/components/SiteHeader";
+import { useProgress } from "@/hooks/use-progress";
 import heroImg from "@/assets/hero-collage.jpg";
 
 export const Route = createFileRoute("/")({
@@ -26,6 +27,9 @@ export const Route = createFileRoute("/")({
 });
 
 function Home() {
+  const { isComplete, count } = useProgress();
+  const total = LESSONS.length;
+  const pct = total > 0 ? Math.round((count / total) * 100) : 0;
   return (
     <div className="min-h-screen">
       <SiteHeader />
@@ -98,21 +102,51 @@ function Home() {
 
       {/* Lessons */}
       <section id="lectii" className="mx-auto max-w-6xl px-6 py-16">
-        <div className="mb-10">
-          <h2 className="font-serif text-4xl text-foreground">The situations</h2>
-          <p className="mt-2 text-muted-foreground">
-            Pick a situation. Read the dialogue, learn the rules, practise, play.
-          </p>
+        <div className="mb-10 flex flex-wrap items-end justify-between gap-6">
+          <div>
+            <h2 className="font-serif text-4xl text-foreground">The situations</h2>
+            <p className="mt-2 text-muted-foreground">
+              Pick a situation. Read the dialogue, learn the rules, practise, play.
+            </p>
+          </div>
+          <div className="min-w-[220px] flex-1 sm:max-w-xs">
+            <div className="flex items-baseline justify-between text-xs uppercase tracking-widest text-muted-foreground">
+              <span>Your progress</span>
+              <span className="text-primary">
+                {count} / {total}
+              </span>
+            </div>
+            <div
+              className="mt-2 h-2 w-full overflow-hidden rounded-full bg-secondary"
+              role="progressbar"
+              aria-valuenow={count}
+              aria-valuemin={0}
+              aria-valuemax={total}
+              aria-label="Lessons completed"
+            >
+              <div
+                className="h-full rounded-full bg-primary transition-all"
+                style={{ width: `${pct}%` }}
+              />
+            </div>
+          </div>
         </div>
 
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-          {LESSONS.map((l) => (
+          {LESSONS.map((l) => {
+            const done = isComplete(l.slug);
+            return (
             <Link
               key={l.slug}
               to="/lesson/$slug"
               params={{ slug: l.slug }}
               className="group relative overflow-hidden rounded-2xl border border-border bg-card transition-all hover:-translate-y-0.5 hover:border-primary/50 hover:shadow-md"
             >
+              {done && (
+                <span className="absolute right-3 top-3 z-10 inline-flex items-center gap-1 rounded-full bg-primary px-2.5 py-1 text-[10px] font-semibold uppercase tracking-wider text-primary-foreground shadow">
+                  ✓ Done
+                </span>
+              )}
               <div className="aspect-[4/3] overflow-hidden bg-secondary/40">
                 <img
                   src={l.image}
@@ -144,7 +178,8 @@ function Home() {
                 </div>
               </div>
             </Link>
-          ))}
+            );
+          })}
         </div>
       </section>
 
