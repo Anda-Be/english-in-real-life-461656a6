@@ -64,6 +64,9 @@ function LessonPage() {
   if (!lesson) {
     throw notFound();
   }
+  const { isComplete, toggle } = useProgress();
+  const done = isComplete(slug);
+
 
   return (
     <div className="min-h-screen">
@@ -166,10 +169,22 @@ function LessonPage() {
         </Section>
 
 
-        <div className="mt-16 flex justify-between text-sm">
+        <div className="mt-16 flex flex-wrap items-center justify-between gap-3 text-sm">
           <Link to="/" className="text-muted-foreground hover:text-primary">
             ← Back to lessons
           </Link>
+          <button
+            onClick={() => toggle(slug)}
+            aria-pressed={done}
+            className={[
+              "inline-flex items-center gap-2 rounded-full px-5 py-2.5 text-sm font-medium transition-all",
+              done
+                ? "border border-primary/40 bg-primary/10 text-primary hover:bg-primary/15"
+                : "bg-primary text-primary-foreground shadow-sm hover:-translate-y-0.5 hover:shadow-md",
+            ].join(" ")}
+          >
+            {done ? "✓ Completed — mark as unfinished" : "Mark lesson as complete"}
+          </button>
         </div>
       </article>
 
