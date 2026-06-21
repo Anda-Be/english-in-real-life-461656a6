@@ -23,10 +23,10 @@ export const Route = createFileRoute("/api/tts")({
           }
 
           // Steer pronunciation via instructions for Romanian
-          const instructions =
-            lang === "ro" || lang === "ro-RO"
-              ? "Speak as a native Romanian speaker. Use authentic Romanian pronunciation (ă, â, î, ș, ț), natural intonation and rhythm. Speak clearly and at a calm, learner-friendly pace."
-              : "Speak clearly and naturally at a calm, learner-friendly pace.";
+          const isRomanian = lang === "ro" || lang === "ro-RO";
+          const instructions = isRomanian
+            ? "You are a warm, native Romanian speaker from Bucharest. Speak this phrase with natural rhythm, prosody, and connected speech — not overly careful or robotic. Pronounce Romanian diacritics naturally: ă (a-breve), â/î (close central vowels), ș as 'sh', ț as 'ts'. Use a conversational, friendly tone at a normal pace, as if talking to a friend."
+            : "Speak clearly and naturally at a calm, learner-friendly pace.";
 
           const upstream = await fetch(
             "https://ai.gateway.lovable.dev/v1/audio/speech",
@@ -39,10 +39,10 @@ export const Route = createFileRoute("/api/tts")({
               body: JSON.stringify({
                 model: "openai/gpt-4o-mini-tts",
                 input: text,
-                voice: voice || "alloy",
+                voice: voice || (isRomanian ? "coral" : "alloy"),
                 response_format: "mp3",
                 instructions,
-                speed: 0.95,
+                speed: isRomanian ? 1.0 : 0.95,
               }),
             },
           );
