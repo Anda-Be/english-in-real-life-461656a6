@@ -91,7 +91,7 @@ export function SpeakButton({ text, lang, label, size = "sm" }: Props) {
     const res = await fetch("/api/tts", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ text: t, lang: "ro", voice: "shimmer" }),
+      body: JSON.stringify({ text: t, lang: "ro" }),
     });
     if (!res.ok) throw new Error(`TTS ${res.status}`);
     const blob = await res.blob();
