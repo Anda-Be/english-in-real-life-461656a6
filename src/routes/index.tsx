@@ -19,9 +19,9 @@ export const Route = createFileRoute("/")({
         content:
           "The English you actually use — real situations, not abstract word lists.",
       },
-      { property: "og:url", content: "https://french-verb-bloom.lovable.app/" },
+      { property: "og:url", content: "https://english-in-real-life.lovable.app/" },
     ],
-    links: [{ rel: "canonical", href: "https://french-verb-bloom.lovable.app/" }],
+    links: [{ rel: "canonical", href: "https://english-in-real-life.lovable.app/" }],
   }),
   component: Home,
 });
